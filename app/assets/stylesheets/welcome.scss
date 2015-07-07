@@ -1,0 +1,141 @@
+$blue: #49e;
+$brightblue: #5af;
+$darkblue: #249;
+
+html{
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+}
+
+html, body{
+  padding: 0;
+  margin: 0;
+  font-family:  Verdana, Geneva, sans-serif;
+  font-size: 20px;
+  background: #be8;
+}
+
+a{
+  text-decoration: none;
+  color: $darkblue;
+}
+
+a:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+a:active{
+  color: black;
+}
+
+noscript{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 2em;
+  background: #eda;
+}
+
+#clover{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#student-login{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 1em;
+  background: #fed;
+  text-align: center;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  input#groupname{
+    font-size: 170%;
+    margin: .5em;
+    text-align: center;
+}
+.submit{
+  background: #eb8;
+  border: none;
+  font-size: 100%;
+  padding: .3em 1.5em;
+}
+.submit{
+  cursor: pointer;
+}
+}
+
+.topright,.teacher-page{
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #efe;
+}
+
+#menutoggle{
+  padding: .6em;
+  border-radius: 0 0 0 16px;
+  background: #9c6;
+}
+
+#menu{
+  display: none;
+  margin: 0;
+  background: $blue;
+}
+
+#menu ul{
+  margin: 0;
+  padding: 0;
+  li:hover{
+    cursor: pointer;
+}
+li.selected{
+  background: $brightblue;
+}
+li{
+  list-style-type: none;
+  padding: 1em;
+}
+}
+
+.teacher-page{
+  padding: 2em;
+  display: none;
+  background: $brightblue;
+  td{
+    padding-right: .5em;
+}
+input{
+  font-size: 100%;
+}
+}
+
+#page-instructions ol li{
+  margin: 1em;
+  ul li{
+    margin: .3em;
+}
+}
+
+#page-lead{
+  h2:first-child{
+    margin-top: 0;
+}
+
+.submit{
+  // background: white;
+  // margin: 5em;
+  width: 100%;
+  font-size: 100%;
+}
+}
