@@ -1,8 +1,8 @@
-#clover
 #student-login
-  = 'Type your group name'
-  = form_tag do
-    = text_field_tag :groupname, '', autofocus: true, maxlength: 20, required: true, size: 20
+  #join-prompt
+    = 'Type your group name'
+  = form_tag join_path, id: 'student-join', remote: true, 'data-type' => :json, autocomplete: false do
+    = text_field_tag :groupname, '', autofocus: true, autocomplete: false, maxlength: 20, required: true, size: 20
     %br
     = submit_tag 'Enter', class: 'submit'
 #page-instructions.teacher-page

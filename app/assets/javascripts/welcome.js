@@ -4,7 +4,34 @@ $(document).ready(function(){
   bindMenuItems();
   focusOnStudentInput();
   updateTeacherContent();
+  bindStudentForm();
+  bindAjaxResponses();
 });
+
+function bindStudentForm(){
+  panel = $('#student-login');
+  panel.submit(function(){
+    panel.find('*').slideUp();
+    panel.slideUp();
+  });
+}
+
+function bindAjaxResponses(){
+  $(document).ajaxSuccess(function(event, xhr, settings){
+    $('#student-login').slideDown();
+    alert('success!');
+  });
+  $(document).ajaxError(function(event, jqxhr, settings, thrownError){
+    if (jqxhr.status==404) {
+      $('#student-login').find('*').show();
+      $('#student-login').slideDown();
+      $('#join-prompt').html('No group by that name.<br>Please check for typos and try again.');
+      focusOnStudentInput();
+    }else{
+      alert('error!');
+    }
+  });
+}
 
 function focusOnStudentInput(){
   $('#groupname').focus();
