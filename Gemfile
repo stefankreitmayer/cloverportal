@@ -12,6 +12,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'haml-rails'
 
+gem 'responders'
+
 group :development, :test do
   gem 'spring'
 end

@@ -17,9 +17,10 @@ function bindStudentForm(){
 }
 
 function bindAjaxResponses(){
-  $(document).ajaxSuccess(function(event, xhr, settings){
+  $(document).ajaxSuccess(function(event, jqxhr, settings, data){
     $('#student-login').slideDown();
-    alert('success!');
+    console.log(data);
+    alert('Welcome '+data.role+' '+data.index);
   });
   $(document).ajaxError(function(event, jqxhr, settings, thrownError){
     if (jqxhr.status==404) {
@@ -28,7 +29,7 @@ function bindAjaxResponses(){
       $('#join-prompt').html('No group by that name.<br>Please check for typos and try again.');
       focusOnStudentInput();
     }else{
-      alert('error!');
+      alert('Some error occurred! Status: '+jqxhr.status+' Error: '+thrownError);
     }
   });
 }
