@@ -18,16 +18,26 @@ function bindStudentForm(){
 
 function bindAjaxResponses(){
   $(document).ajaxSuccess(function(event, jqxhr, settings, data){
-    $('#student-login').slideDown();
-    console.log(data);
-    alert('Welcome '+data.role+' '+data.index);
+    if(jqxhr.status==201){//new group created
+      location.href = $.parseJSON(jqxhr.responseText).url;
+    }else{//take part as student
+      $('#student-login').slideDown();
+      alert('Welcome '+data.role+' '+data.index);
+    }
   });
   $(document).ajaxError(function(event, jqxhr, settings, thrownError){
-    if (jqxhr.status==404) {
+    if (jqxhr.status==404) {//group not found
       $('#student-login').find('*').show();
       $('#student-login').slideDown();
       $('#join-prompt').html('No group by that name.<br>Please check for typos and try again.');
       focusOnStudentInput();
+    }else if (jqxhr.status==406) {//group form validation error(s)
+      errors = $.parseJSON(jqxhr.responseText).error;
+      html = errors[0];
+      for(i=1; i<errors.length; i++){
+        html += '<br>' + errors[i];
+      }
+      $('#new-group-errors').html(html);
     }else{
       alert('Some error occurred! Status: '+jqxhr.status+' Error: '+thrownError);
     }
