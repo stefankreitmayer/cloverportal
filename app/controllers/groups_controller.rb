@@ -1,20 +1,31 @@
 class GroupsController < ApplicationController
+  skip_before_action :authorize, only: [:create]
   respond_to :json
 
-  def show
-    @group = Group.find(params[:id])
+  def lead
+    @group = logged_in_group
   end
 
   def create
     group = Group.new(group_params)
     if group.save
-      render json: {url: group_path(group)}, status: 201
+      login group
+      render json: {url: lead_path}, status: 201
     else
       render json: {error: group.errors.full_messages}, status: 406
     end
   end
 
+  def logout
+    session[:group_id] = nil
+    redirect_to root_path
+  end
+
   private
+
+  def login(group)
+    session[:group_id] = group.id
+  end
 
   def group_params
     params.require(:group).permit(:groupname, :password)
