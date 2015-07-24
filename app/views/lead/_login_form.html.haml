@@ -1,0 +1,20 @@
+%h2 Log into an existing group
+%p
+  To return to your group after you logged out,
+  %br
+  please enter your group's name and password below.
+= form_tag login_lead_path, remote: true, 'data-type' => :json do
+  %table
+    %tr
+      %td
+        = label_tag :groupname
+      %td
+        = text_field_tag :groupname, '', maxlength: 20, required: true, size: 20
+    %tr
+      %td
+        = label_tag :password
+      %td
+        = password_field_tag :password, '', maxlength: 20, required: true, size: 20
+    %tr
+      %td(colspan=2)
+        = submit_tag 'Log in', class: 'submit'

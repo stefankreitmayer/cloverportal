@@ -2,7 +2,7 @@
 %p
   Please choose a unique name and a password for your group.
   #new-group-errors.notice
-= form_for Group.new, remote: true, format: :json do |f|
+= form_for Group.new, remote: true, url: create_lead_path, format: :json do |f|
   %table
     %tr
       %td
@@ -19,4 +19,3 @@
         = f.submit'Create group', class: 'submit'
 %p
   Careful to keep your password secret from your students ;)
-

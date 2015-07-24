@@ -1,7 +1,7 @@
 #student-login
   #join-prompt
     = 'Type your group name'
-  = form_tag join_path, id: 'student-join', remote: true, 'data-type' => :json, autocomplete: false do
+  = form_tag create_part_path, id: 'student-join', remote: true, 'data-type' => :json, autocomplete: false do
     = text_field_tag :groupname, '', autofocus: true, autocomplete: false, maxlength: 20, required: true, size: 20
     %br
     = submit_tag 'Enter', class: 'submit'
@@ -34,27 +34,8 @@
   %h2 As a student
   All you need to do is follow your teacher's instructions.
 #page-lead.teacher-page
-  = render partial: 'groups/form'
-  %h2 Log back in to an existing group
-  %p
-    To return to your group after you logged out,
-    %br
-    please enter your group's name and password below.
-  = form_tag do
-    %table
-      %tr
-        %td
-          = label_tag :groupname
-        %td
-          = text_field_tag :groupname, '', maxlength: 20, required: true, size: 20
-      %tr
-        %td
-          = label_tag :password
-        %td
-          = password_field_tag :password, '', maxlength: 20, required: true, size: 20
-      %tr
-        %td(colspan=2)
-          = submit_tag 'Log in', class: 'submit'
+  = render partial: 'lead/create_form'
+  = render partial: 'lead/login_form'
 #page-about.teacher-page
   This website and all the associated group tasks are being developed
   %br
