@@ -3,30 +3,30 @@ class LeadsController < ApplicationController
   respond_to :js
 
   def create
-    group = Group.new(groupname: params[:groupname])
-    if group.valid?
-      lead = Lead.new(group: group, password: params[:password])
+    @group = Group.new(groupname: params[:groupname])
+    if @group.valid?
+      lead = Lead.new(group: @group, password: params[:password])
       if lead.save
-        group.save
+        @group.save
         begin_session 'lead', lead.id
-        render 'logged_in'
+        render 'control'
       else
         html = lead.errors.full_messages.join '<br>'
         render js: "$('#create-lead-errors').html('#{html}')"
       end
     else
-      html = group.errors.full_messages.join '<br>'
+      html = @group.errors.full_messages.join '<br>'
       render js: "$('#create-lead-errors').html('#{html}')"
     end
   end
 
   def login
-    group = Group.find_by(groupname: params[:groupname])
-    if group
-      lead = group.lead
+    @group = Group.find_by(groupname: params[:groupname])
+    if @group
+      lead = @group.lead
       if lead.authenticate(params[:password])
         begin_session 'lead', lead.id
-        render 'logged_in'
+        render 'control'
       else
         puts lead.password
         puts params[:password]
