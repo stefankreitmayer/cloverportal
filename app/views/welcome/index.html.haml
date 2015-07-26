@@ -1,7 +1,7 @@
 #student-login
   #join-prompt
     = 'Type your group name'
-  = form_tag create_part_path, id: 'student-join', remote: true, 'data-type' => :json, autocomplete: false do
+  = form_tag create_part_path, id: 'student-join', remote: true, autocomplete: false do
     = text_field_tag :groupname, '', autofocus: true, autocomplete: false, maxlength: 20, required: true, size: 20
     %br
     = submit_tag 'Enter', class: 'submit'

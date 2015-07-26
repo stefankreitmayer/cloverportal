@@ -1,14 +1,14 @@
 class PartsController < ApplicationController
   skip_before_action :authorize, only: [:create]
-  respond_to :json
+  respond_to :js
 
   def create
     group = Group.find_by(groupname: params[:groupname])
     if group
       part = Part.create!(group: group, index: group.parts_count)
-      render json: part
+      render 'create'
     else
-      render nothing: true, status: :not_found
+      render 'group_not_found'
     end
   end
 end

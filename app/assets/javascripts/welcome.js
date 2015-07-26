@@ -28,10 +28,6 @@ function bindAjaxResponses(){
   // $(document).ajaxError(function(event, jqxhr, settings, thrownError){
   //   setTimeout(function(){
   //   if (jqxhr.status==404) {//group not found
-  //     $('#student-login').find('*').show();
-  //     $('#student-login').slideDown();
-  //     $('#join-prompt').html('No group by that name.<br>Please check for typos and try again.');
-  //     focusOnStudentInput();
   //   }else if (jqxhr.status==406) {//group form validation error(s)
   //   }else{
   //     alert('Some error occurred! Status: '+jqxhr.status+' Error: '+thrownError);
