@@ -1,9 +1,8 @@
 %h2 Log into an existing group
 %p
-  To return to your group after you logged out,
-  %br
-  please enter your group's name and password below.
-= form_tag login_lead_path, remote: true, 'data-type' => :json do
+  Please enter the group's name and your password below.
+  #login-lead-errors.notice
+= form_tag login_lead_path, remote: true do
   %table
     %tr
       %td

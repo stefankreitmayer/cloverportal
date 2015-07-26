@@ -1,0 +1,21 @@
+%h2 Create a new group
+%p
+  Please choose a unique name and a password for your group.
+  #create-lead-errors.notice
+= form_tag create_lead_path, remote: true do
+  %table
+    %tr
+      %td
+        = label_tag :groupname
+      %td
+        = text_field_tag :groupname, '', maxlength: 20, required: true, size: 20
+    %tr
+      %td
+        = label_tag :password
+      %td
+        = password_field_tag :password, '', maxlength: 20, required: true, size: 20
+    %tr
+      %td(colspan=2)
+        = submit_tag 'Create group', class: 'submit'
+%p
+  Careful to keep your password secret from your students ;)

@@ -7,11 +7,17 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def logged_in_group
-    @logged_in_group ||= Group.find(session[:group_id]) if session[:group_id]
+  def authorize
+    redirect_to root_path unless session[:role]
   end
 
-  def authorize
-    redirect_to root_path unless logged_in_group
+  def begin_session role_name, id
+    session[:role] = role_name
+    session[:id] = id
+  end
+
+  def terminate_session
+    session[:role] = session[:id] = nil
+    redirect_to root_path
   end
 end
