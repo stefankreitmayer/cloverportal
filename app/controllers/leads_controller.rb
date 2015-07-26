@@ -1,3 +1,5 @@
+require 'core/clover_task'
+
 class LeadsController < ApplicationController
   skip_before_action :authorize, only: [:create, :login]
   respond_to :js
