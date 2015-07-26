@@ -5,7 +5,7 @@ class PartsController < ApplicationController
   def create
     group = Group.find_by(groupname: params[:groupname])
     if group
-      part = Part.create!(group: group, index: group.parts_count)
+      part = Part.create!(group: group)
       render 'create'
     else
       render 'group_not_found'

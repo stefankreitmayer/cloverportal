@@ -1,5 +1,5 @@
 %table
-  - @group.parts.each do |part|
+  - @group.assigned_parts.each_with_index do |part, index|
     %tr
       %td
         = part.id

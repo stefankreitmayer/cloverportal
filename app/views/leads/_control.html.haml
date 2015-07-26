@@ -1,3 +1,6 @@
-%h1= 'Group '+@group.groupname
-#parts-control
-  = render 'parts'
+#lead-container
+  %h1= "Group #{@group.groupname}  :  Test task"
+  #unassigned-parts.section
+    = "#{pluralize(@group.unassigned_parts.length, 'unassigned part')} waiting."
+  #assigned-parts.section
+    = render 'parts'

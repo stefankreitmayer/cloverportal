@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726083535) do
+ActiveRecord::Schema.define(version: 20150726135531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20150726083535) do
   add_index "leads", ["group_id"], name: "index_leads_on_group_id", using: :btree
 
   create_table "parts", force: :cascade do |t|
-    t.integer  "index",      null: false
+    t.integer  "index"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "group_id"

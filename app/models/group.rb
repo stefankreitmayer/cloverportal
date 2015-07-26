@@ -4,7 +4,11 @@ class Group < ActiveRecord::Base
 
   validates :groupname, presence: true, uniqueness: true
 
-  def parts_count
-    parts.length
+  def assigned_parts
+    parts.where.not(index: nil)
+  end
+
+  def unassigned_parts
+    parts.where(index: nil)
   end
 end
