@@ -8,7 +8,7 @@ class LeadsController < ApplicationController
       lead = Lead.new(group: @group, password: params[:password])
       if lead.save
         @group.save
-        begin_session 'lead', lead.id
+        session[:lead] = lead.id
         render 'control'
       else
         html = lead.errors.full_messages.join '<br>'
@@ -25,7 +25,7 @@ class LeadsController < ApplicationController
     if @group
       lead = @group.lead
       if lead.authenticate(params[:password])
-        begin_session 'lead', lead.id
+        session[:lead] = lead.id
         render 'control'
       else
         puts lead.password
@@ -35,5 +35,20 @@ class LeadsController < ApplicationController
     else
       render js: "$('#login-lead-errors').html('No group by that name.<br>Please check for typos and try again.')"
     end
+  end
+
+  def auto_assign_parts
+    lead = Lead.find_by(id: session[:lead])
+    @group = lead.group
+    @group.auto_assign_parts
+    render 'control'
+  end
+
+  def self_assign_parts
+    render 'start_picking_characters'
+  end
+
+  def dismiss_unassigned_parts
+    render js: "alert('This feature has not been implemented yet');"
   end
 end

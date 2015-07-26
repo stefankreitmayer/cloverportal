@@ -1,8 +1,14 @@
+$section: #eee;
+
 #lead-container{
   padding: 1em;
 }
 
-$section: #eee;
+#unassigned-parts form{
+  float: right;
+}
+
 .section{
+  margin: 1em;
   background-color: $section;
 }

@@ -1,5 +1,16 @@
 %table
-  - @group.assigned_parts.each_with_index do |part, index|
+  %tr
+    %th
+      Index
+    %th
+      Name
+    %th
+      Status
+  - @group.assigned_parts.order(:index).each do |part|
     %tr
       %td
-        = part.id
+        = part.index
+      %td
+        = %w(red green blue orange)[part.index]
+      %td
+        OK

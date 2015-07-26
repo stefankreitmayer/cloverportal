@@ -8,16 +8,11 @@ class ApplicationController < ActionController::Base
   private
 
   def authorize
-    redirect_to root_path unless session[:role]
-  end
-
-  def begin_session role_name, id
-    session[:role] = role_name
-    session[:id] = id
+    redirect_to root_path unless session[:lead] || session[:part]
   end
 
   def terminate_session
-    session[:role] = session[:id] = nil
+    session[:lead] = session[:part] = nil
     redirect_to root_path
   end
 end
