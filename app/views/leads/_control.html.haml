@@ -3,7 +3,7 @@
   #unassigned-parts.section
     = "#{pluralize(@group.unassigned_parts.length, 'part')} waiting to be assigned."
     = button_to 'Auto Assign', auto_assign_parts_path, remote: true
-    = button_to 'Let Them Pick', start_picking_characters_path, remote: true
-    = button_to 'Dismiss', dismiss_unassigned_parts_path, remote: true
+    = button_to 'Let Them Pick', start_picking_characters_path, remote: true, disabled: true
+    = button_to 'Dismiss', dismiss_unassigned_parts_path, remote: true, disabled: true
   #assigned-parts.section
     = render 'parts'

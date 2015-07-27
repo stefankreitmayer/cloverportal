@@ -8,7 +8,11 @@ $section: #eee;
   float: right;
 }
 
+#assigned-parts td:not(:first-child){
+  padding: 0 2em;
+}
+
 .section{
-  margin: 1em;
+  margin: 1em 0;
   background-color: $section;
 }

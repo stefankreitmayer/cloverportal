@@ -40,8 +40,7 @@ class LeadsController < ApplicationController
   end
 
   def auto_assign_parts
-    lead = Lead.find_by(id: session[:lead])
-    @group = lead.group
+    set_lead_and_group
     @group.auto_assign_parts
     render 'control'
   end
@@ -52,5 +51,16 @@ class LeadsController < ApplicationController
 
   def dismiss_unassigned_parts
     render js: "alert('This feature has not been implemented yet');"
+  end
+
+  def poll
+    render 'control'
+  end
+
+  private
+
+  def set_lead_and_group
+    @lead = Lead.find_by(id: session[:lead])
+    @group = lead.group
   end
 end

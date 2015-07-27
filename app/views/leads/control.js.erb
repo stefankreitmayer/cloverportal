@@ -1,1 +1,4 @@
 $('body').html('<%= escape_javascript render('control')%>');
+setTimeout(function(){
+  $.getScript('<%= poll_lead_path%>');
+}, 2000);
