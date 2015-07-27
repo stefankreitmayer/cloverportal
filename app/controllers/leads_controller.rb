@@ -30,8 +30,6 @@ class LeadsController < ApplicationController
         session[:lead] = lead.id
         render 'control'
       else
-        puts lead.password
-        puts params[:password]
         render js: "$('#login-lead-errors').html('The group name or password you entered is incorrect.<br>Please check both for typos and try again.')"
       end
     else
@@ -41,19 +39,40 @@ class LeadsController < ApplicationController
 
   def auto_assign_parts
     set_lead_and_group
-    @group.auto_assign_parts
+    index = 0
+    parts = @group.parts.where(assigned: params[:original_state])
+    parts.each do |part|
+      until parts.where(index: index).empty?
+        index += 1
+      end
+      part.update!(index: index, assigned: 'index')
+      index += 1
+    end
     render 'control'
   end
 
-  def self_assign_parts
-    render 'start_picking_characters'
+  def allow_self_assign
+    set_lead_and_group
+    @group.unassigned_parts.each do |part|
+      part.update!(index: nil, assigned: 'choosing')
+    end
+    render 'control'
   end
 
-  def dismiss_unassigned_parts
-    render js: "alert('This feature has not been implemented yet');"
+  def dismiss_parts
+    set_lead_and_group
+    @group.parts.where(assigned: params[:assigned]).destroy_all
+    render 'control'
+  end
+
+  def dismiss_part
+    set_lead_and_group
+    @group.parts.find_by(index: params[:index]).destroy
+    render 'control'
   end
 
   def poll
+    set_lead_and_group
     render 'control'
   end
 
@@ -61,6 +80,6 @@ class LeadsController < ApplicationController
 
   def set_lead_and_group
     @lead = Lead.find_by(id: session[:lead])
-    @group = lead.group
+    @group = @lead.group
   end
 end

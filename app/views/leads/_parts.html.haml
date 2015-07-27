@@ -1,3 +1,4 @@
+= "#{pluralize(@group.assigned_parts.length, 'part')} assigned."
 %table
   %tr
     %th
@@ -6,6 +7,7 @@
       Name
     %th
       Status
+    %th
   - @group.assigned_parts.order(:index).each do |part|
     %tr
       %td
@@ -14,3 +16,5 @@
         = CloverTask.part_name part.index
       %td
         OK
+      %td
+        = button_to 'Dismiss', dismiss_part_path, remote: true, params: {index: part.index}

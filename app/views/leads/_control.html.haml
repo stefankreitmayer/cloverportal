@@ -1,9 +1,16 @@
 #lead-container
   %h1= "Group #{@group.groupname}  :  Test task"
   #unassigned-parts.section
-    = "#{pluralize(@group.unassigned_parts.length, 'part')} waiting to be assigned."
-    = button_to 'Auto Assign', auto_assign_parts_path, remote: true
-    = button_to 'Let Them Pick', start_picking_characters_path, remote: true, disabled: true
-    = button_to 'Dismiss', dismiss_unassigned_parts_path, remote: true, disabled: true
+    - n = @group.unassigned_parts.length
+    = "#{pluralize(n, 'part')} waiting to be assigned."
+    = button_to 'Auto Assign', auto_assign_parts_path, remote: true, disabled: n==0, params: {original_state: 'none'}
+    = button_to 'Let Them Pick', allow_self_assign_path, remote: true, disabled: n==0
+    = button_to 'Dismiss', dismiss_parts_path, remote: true, disabled: n==0, params: {assigned: 'none'}
+  #self-assigning-parts.section
+    - n = @group.self_assigning_parts.length
+    = "#{pluralize(n, 'part')} choosing role / character."
+    = button_to 'Auto Assign', auto_assign_parts_path, remote: true, disabled: n==0, params: {original_state: 'choosing'}
+    = button_to 'Dismiss', dismiss_parts_path, remote: true, disabled: n==0, params: {assigned: 'choosing'}
+
   #assigned-parts.section
     = render 'parts'
