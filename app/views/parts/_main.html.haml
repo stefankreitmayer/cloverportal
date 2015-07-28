@@ -1,0 +1,8 @@
+- case @part.assigned
+- when 'none'
+  %h1 Welcome to Comfy Birds!
+  Please wait for the teacher to let you in.
+- when 'choosing'
+  = render 'character_menu'
+- when 'index'
+  = render 'game'

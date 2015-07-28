@@ -1,0 +1,6 @@
+#character-choices
+  %ul
+    - @part.group.available_roles.each do |role|
+      %li
+        = link_to pick_character_path(role: role), remote: true, method: 'post' do
+          = role

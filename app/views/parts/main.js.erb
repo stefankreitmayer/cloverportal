@@ -1,0 +1,6 @@
+$('body').html('<%= escape_javascript render('main')%>');
+clearTimeout(poll_handle);
+poll_handle = setTimeout(function(){
+  $.getScript('<%= poll_part_path%>')
+  .fail(function(){location.reload();});
+}, 4000);
